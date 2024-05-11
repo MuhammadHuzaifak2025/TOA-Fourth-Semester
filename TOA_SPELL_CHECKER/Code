@@ -1,0 +1,81 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <fstream>
+#include <vector>
+#include <QString>
+#include <iostream> // Include <iostream> for cout and cin
+#include <regex>
+
+using namespace std; // Add this line to use standard namespace
+
+void Solve_regex() {
+    // Your function definition
+}
+
+vector<QString> readSpellingDatabase(const QString& filePath) {
+    vector<QString> words;
+    ifstream file(filePath.toStdString()); // Convert QString to std::string
+    QString word;
+
+    while (getline(file, word.toStdString())) { // Convert QString to std::string
+        words.push_back(word);
+    }
+
+    return words;
+}
+
+vector<QString> greedySearch(const QString& regexPattern, const vector<QString>& words) {
+    vector<QString> matchedWords;
+    QString patternStr = regexPattern;
+
+    size_t pos = 0;
+    while ((pos = patternStr.indexOf("*", pos)) != -1) { // Change QString::npos to -1
+        patternStr.replace(pos, 1, ".*");
+        pos += 2;
+    }
+
+    pos = 0;
+    while ((pos = patternStr.indexOf("?", pos)) != -1) { // Change QString::npos to -1
+        patternStr.replace(pos, 1, ".");
+        pos += 1;
+    }
+
+    regex pattern(patternStr.toStdString()); // Convert QString to std::string
+
+    for (const QString& word : words) {
+        if (regex_search(word.toStdString(), pattern)) { // Convert QString to std::string
+            matchedWords.push_back(word);
+        }
+    }
+
+    return matchedWords;
+}
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    QString filePath = "spelling_database.txt";
+    vector<QString> words = readSpellingDatabase(filePath);
+
+    QString pattern;
+    cout << "Enter a regular expression pattern: ";
+    cin >> pattern;
+
+    vector<QString> matchedWords = greedySearch(pattern, words);
+
+    if (!matchedWords.empty()) {
+        cout << "Matched words:" << endl;
+        for (const QString& word : matchedWords) {
+            cout << word.toStdString() << endl; // Convert QString to std::string
+        }
+    } else {
+        cout << "No matches found." << endl;
+    }
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
