@@ -19,7 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
 
     bool regexMatch(const QString& pattern, const QString& word);
-    QVector<QString> greedySearch(const QString& regexPattern, const QVector<QString>& words);
+    QStringList Spell_Checker();
     QVector<QString> readSpellingDatabase(const QString& filePath);
     QStringList loadDictionaryWords(const QString& filePath);
     void updateListWidgetOnMainThread(const QVector<QString>& matchedWords);
@@ -34,9 +34,13 @@ private slots:
     void on_pushButton_clicked();
     void updateListWidget();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QVector<QString> word_list;
+    QStringList list_of_words;
+    //QString fileName;
 
 };
 #endif // MAINWINDOW_H

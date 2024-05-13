@@ -22,8 +22,8 @@
      <rect>
       <x>20</x>
       <y>40</y>
-      <width>211</width>
-      <height>41</height>
+      <width>271</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="font">
@@ -33,9 +33,11 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:  #555555;
-color: white;
-border-radius: 10px;</string>
+     <string notr="true">
+background-color: rgba(50,50,50,0.7);
+border-radius: 20px;
+padding: 5px;
+color: white;</string>
     </property>
     <property name="html">
      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -48,7 +50,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="placeholderText">
-     <string>Search Word</string>
+     <string>Enter Paragraph</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
@@ -57,10 +59,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>50</y>
-      <width>80</width>
-      <height>24</height>
+      <x>300</x>
+      <y>40</y>
+      <width>121</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -70,33 +72,75 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-radius: 10px;
-color:white;
-background-color: #42a5f5;</string>
+     <string notr="true">border-radius: 15px;
+background-color: #1DB954;
+text-align: centre;
+color: black;</string>
     </property>
     <property name="text">
-     <string>Search</string>
+     <string>Check Spelling</string>
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
+      <y>240</y>
       <width>271</width>
-      <height>411</height>
+      <height>311</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Times New Roman</family>
       <pointsize>14</pointsize>
+      <underline>true</underline>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:  #555555;
-color: white;
-border-radius: 10px;</string>
+     <string notr="true">QListWidget {
+background-color: rgba(40, 40, 40,0.7);
+color:red;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 15px;
+ }
+
+QListWidget::item {
+background-color: rgba(40, 40, 40,0.7);
+padding: 10px;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 15px;
+}
+
+QScrollBar:vertical, QScrollBar:horizontal {
+background-color: rgba(40, 40, 40,0.7);
+width: 10px;
+margin: 0px 0px 0px 0px;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+background: #a0a0a0;
+min-height: 20px;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal {
+border: none;
+background: none;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical, QScrollBar::add-page:horizontal,  QScrollBar::sub-page:horizontal{
+background: none;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+
+}
+</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -137,9 +181,55 @@ border-radius: 10px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:  #555555;
-color: white;
-border-radius: 10px;</string>
+     <string notr="true">QListWidget {
+background-color: rgba(40, 40, 40,0.7);
+color:white;
+selection-background-color: #a0a0a0;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 15px;
+ }
+
+QListWidget::item {
+background-color: rgba(40, 40, 40,0.7);
+padding: 10px;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 15px;
+}
+QListWidget::item:hover {
+background-color: rgba(40, 40, 40,0.3);
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 15px;
+}
+
+QScrollBar:vertical, QScrollBar:horizontal {
+background-color: rgba(40, 40, 40,0.7);
+width: 10px;
+margin: 0px 0px 0px 0px;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+background: #a0a0a0;
+min-height: 20px;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal {
+border: none;
+background: none;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical, QScrollBar::add-page:horizontal,  QScrollBar::sub-page:horizontal{
+background: none;
+border: 1px rgba(40, 40, 40,0.7); 
+border-radius: 5px 0 0 5px;
+
+}
+</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -167,9 +257,9 @@ border-radius: 10px;</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>100</y>
-      <width>61</width>
+      <x>20</x>
+      <y>200</y>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
@@ -183,7 +273,35 @@ border-radius: 10px;</string>
      <string notr="true">color:white;</string>
     </property>
     <property name="text">
-     <string>Output</string>
+     <string>Misspelled Words</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>499</x>
+      <y>50</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 15px;
+background-color: #1DB954;
+text-align: centre;
+color: black;</string>
+    </property>
+    <property name="text">
+     <string>Select Dictionary</string>
     </property>
    </widget>
    <zorder>textEdit</zorder>
@@ -193,6 +311,7 @@ border-radius: 10px;</string>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -200,7 +319,7 @@ border-radius: 10px;</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
