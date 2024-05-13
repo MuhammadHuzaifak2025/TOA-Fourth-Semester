@@ -185,18 +185,20 @@ public:
 ""));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(500, 90, 251, 31));
+        label_2->setGeometry(QRect(500, 100, 251, 31));
         label_2->setFont(font3);
-        label_2->setStyleSheet(QString::fromUtf8("color:white;"));
+        label_2->setStyleSheet(QString::fromUtf8("color:white;\n"
+"text-align: centre;"));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(20, 200, 271, 31));
         label_3->setFont(font3);
-        label_3->setStyleSheet(QString::fromUtf8("color:white;"));
+        label_3->setStyleSheet(QString::fromUtf8("color:white;\n"
+"text-align: centre;"));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setEnabled(true);
-        pushButton_2->setGeometry(QRect(499, 50, 251, 31));
+        pushButton_2->setGeometry(QRect(489, 50, 271, 31));
         pushButton_2->setFont(font1);
         pushButton_2->setStyleSheet(QString::fromUtf8("border-radius: 15px;\n"
 "background-color: #1DB954;\n"

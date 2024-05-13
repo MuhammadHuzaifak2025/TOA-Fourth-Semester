@@ -236,7 +236,7 @@ border-radius: 5px 0 0 5px;
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>90</y>
+      <y>100</y>
       <width>251</width>
       <height>31</height>
      </rect>
@@ -248,7 +248,8 @@ border-radius: 5px 0 0 5px;
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:white;</string>
+     <string notr="true">color:white;
+text-align: centre;</string>
     </property>
     <property name="text">
      <string>List of words being searched</string>
@@ -270,7 +271,8 @@ border-radius: 5px 0 0 5px;
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:white;</string>
+     <string notr="true">color:white;
+text-align: centre;</string>
     </property>
     <property name="text">
      <string>Misspelled Words</string>
@@ -282,9 +284,9 @@ border-radius: 5px 0 0 5px;
     </property>
     <property name="geometry">
      <rect>
-      <x>499</x>
+      <x>489</x>
       <y>50</y>
-      <width>251</width>
+      <width>271</width>
       <height>31</height>
      </rect>
     </property>
