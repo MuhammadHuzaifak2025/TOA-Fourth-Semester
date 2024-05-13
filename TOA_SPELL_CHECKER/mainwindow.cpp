@@ -5,18 +5,79 @@
 #include <vector>
 #include <QString>
 #include <iostream>
-#include <regex>
+#include <QtConcurrent/QtConcurrent>
+
 
 using namespace std;
+
+// main function
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->pushButton->hide();
+    connect(ui->textEdit, &QTextEdit::textChanged, this, &MainWindow::updateListWidget);
+
+    word_list = readSpellingDatabase("spelling_database.txt");
+    QStringList list_of_words = loadDictionaryWords("spelling_database.txt");
+    ui->listWidget_2->addItems(list_of_words);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
+
+void MainWindow::updateListWidget() {
+
+    QString pattern = ui->textEdit->toPlainText();
+
+
+    QVector<QString> matchedWords = greedySearch(pattern, word_list);
+
+    ui->listWidget->clear();
+
+
+    if (!matchedWords.empty()) {
+        for (const QString& word : matchedWords) {
+            ui->listWidget->addItem(word);
+        }
+    }
+}
 
 
 void Solve_regex() {
     // Your function definition
 }
 
-vector<QString> readSpellingDatabase(const QString& filePath) {
+QStringList MainWindow::loadDictionaryWords(const QString& filePath) {
     qDebug() << filePath;
-    vector<QString> words;
+    QStringList words;
+    QFile file(filePath); // Create QFile object
+    if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QTextStream in(&file);
+        QString word;
+
+        while (!in.atEnd()) {
+            word = in.readLine();
+            words.append(word);
+        }
+
+        file.close();
+    } else {
+        qDebug() << "Failed to open file for reading.";
+    }
+
+    return words;
+}
+
+QVector<QString> MainWindow::readSpellingDatabase(const QString& filePath) {
+    qDebug() << filePath;
+    QVector<QString> words;
     QFile file(filePath); // Create QFile object
     if (file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         QTextStream in(&file);
@@ -35,26 +96,16 @@ vector<QString> readSpellingDatabase(const QString& filePath) {
     return words;
 }
 
-vector<QString> greedySearch(const QString& regexPattern, const vector<QString>& words) {
-    vector<QString> matchedWords;
+QVector<QString> MainWindow::greedySearch(const QString& regexPattern, const QVector<QString>& words) {
+    QVector<QString> matchedWords;
     QString patternStr = regexPattern;
 
-    size_t pos = 0;
-    while ((pos = patternStr.indexOf("*", pos)) != -1) {
-        patternStr.replace(pos, 1, ".*");
-        pos += 2;
-    }
+//    patternStr.replace("*", ".*").replace("?", ".");
 
-    pos = 0;
-    while ((pos = patternStr.indexOf("?", pos)) != -1) {
-        patternStr.replace(pos, 1, ".");
-        pos += 1;
-    }
-
-    regex pattern(patternStr.toStdString());
+    QRegularExpression pattern(patternStr);
 
     for (const QString& word : words) {
-        if (regex_search(word.toStdString(), pattern)) {
+        if (pattern.match(word).hasMatch()) {
             matchedWords.push_back(word);
         }
     }
@@ -62,32 +113,32 @@ vector<QString> greedySearch(const QString& regexPattern, const vector<QString>&
     return matchedWords;
 }
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+void MainWindow::on_pushButton_clicked()
 {
-    ui->setupUi(this);
+//    QString str = ui->textEdit->toPlainText();
     QString filePath = "spelling_database.txt";
     QFile File2("HELLO.txt");;
     File2.open(QIODevice::WriteOnly | QIODevice::Text);
     File2.close();
-    vector<QString> words = readSpellingDatabase(filePath);
+    QVector<QString> words = readSpellingDatabase(filePath);
 
+    QStringList searched_wordsp;
     QString pattern = ui->textEdit->toPlainText();
 
-    vector<QString> matchedWords = greedySearch(pattern, words);
+    QVector<QString> matchedWords = greedySearch(pattern, words);
 
     if (!matchedWords.empty()) {
         qDebug() << "Matched words:" ;
         for (const QString& word : matchedWords) {
-            qDebug() << word.toStdString() ;
+            searched_wordsp.append(word);
         }
     } else {
         qDebug() << "No matches found." ;
     }
+
+    ui->listWidget->clear(); // Clear previous items
+    ui->listWidget->addItems(searched_wordsp);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+
+
