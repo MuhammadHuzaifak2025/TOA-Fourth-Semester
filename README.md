@@ -1,4 +1,4 @@
-#Theory of Automata -- Regex Spell Checker
+##Theory of Automata -- Regex Spell Checker
 
 ## Overview
 A C++ Qt-based spell checker program.
