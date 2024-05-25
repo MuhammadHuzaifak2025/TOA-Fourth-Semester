@@ -21,6 +21,6 @@ A C++ Qt-based spell checker program.
 
   
 ## Contributers
-Muhammad Huzaifa
-Ilyas Moiz
-Saeed Daniyal
+-Muhammad Huzaifa
+-Ilyas Moiz
+-Saeed Daniyal
